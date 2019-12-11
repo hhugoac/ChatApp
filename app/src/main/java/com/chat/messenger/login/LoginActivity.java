@@ -19,7 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class LoginActivity extends AppCompatActivity implements LoginView{
+public class LoginActivity extends AppCompatActivity implements LoginView {
 
     @BindView(R.id.editTextName)
     EditText inputEmail;
@@ -44,6 +44,8 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+
+        loginPresenter = new LoginPresenterImpl(this);
     }
 
     @OnClick(R.id.btnSignin)
@@ -83,6 +85,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
                                       inputPassword.getText().toString());
     }
 
+    @OnClick(R.id.btnSignin)
     @Override
     public void handleSignIn() {
         loginPresenter.validateLogin(inputEmail.getText().toString(),
