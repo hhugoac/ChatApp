@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Messenger</string>
+    <string name="login.messege.email">Correo electroónico</string>
+    <string name="login.messege.password">Password</string>
+    <string name="login.messege.signin">Iniciar seción</string>
+    <string name="login.messege.signup">Crear cuenta</string>
+    <string name="login.error.message.signin">Imposible iniciar sesión %s</string>
+    <string name="login.error.message.signup">Imposible registrar nuevo usuario %s</string>
+    <string name="login.notice.message.signin">IUsuario registrado con éxito</string>
+</resources>
