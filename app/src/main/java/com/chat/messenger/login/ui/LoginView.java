@@ -1,4 +1,4 @@
-package com.chat.messenger.login;
+package com.chat.messenger.login.ui;
 
 public interface LoginView {
     void enableInputs();

@@ -1,4 +1,4 @@
-package com.chat.messenger.login;
+package com.chat.messenger.login.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +13,8 @@ import android.widget.RelativeLayout;
 
 import com.chat.messenger.R;
 import com.chat.messenger.contactlist.ContactListActivity;
+import com.chat.messenger.login.LoginPresenter;
+import com.chat.messenger.login.LoginPresenterImpl;
 import com.google.android.material.snackbar.Snackbar;
 
 import butterknife.BindView;
@@ -46,6 +48,14 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         ButterKnife.bind(this);
 
         loginPresenter = new LoginPresenterImpl(this);
+        loginPresenter.onCreate();
+        loginPresenter.checkForAuthenticatedUser();
+    }
+
+    @Override
+    protected void onDestroy() {
+        loginPresenter.onDestroy();
+        super.onDestroy();
     }
 
     @OnClick(R.id.btnSignin)
@@ -120,5 +130,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         inputEmail.setEnabled(enabled);
         inputPassword.setEnabled(enabled);
         btnSignin.setEnabled(enabled);
+        btnSignup.setEnabled(enabled);
     }
 }

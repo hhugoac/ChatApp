@@ -1,5 +1,7 @@
 package com.chat.messenger.login;
 
+import android.content.Context;
+
 public class LoginInteractorImpl implements LoginInteractor {
 
     private LoginRepository loginRepository;

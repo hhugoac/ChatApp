@@ -2,6 +2,7 @@ package com.chat.messenger.domain;
 
 import androidx.annotation.NonNull;
 
+import com.chat.messenger.entities.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -16,6 +17,7 @@ import java.util.Map;
 public class FirebaseHelper {
 
     private DatabaseReference dataReference;
+
     private final static String SEPARATOR = "___";
     private final static String CHATS_PATH = "chats";
     private final static String USERS_PATH = "users";
@@ -36,17 +38,20 @@ public class FirebaseHelper {
                 .getReferenceFromUrl(FIREBASE_URL);
     }
 
+
     public DatabaseReference getDataReference() {
         return dataReference;
     }
 
+
     public String getAuthUserEmail() {
         FirebaseAuth auth = FirebaseAuth.getInstance();
-        FirebaseUser firebaseUser = auth.getCurrentUser();
         String email = null;
+        FirebaseUser firebaseUser = auth.getCurrentUser();
+
         if (firebaseUser != null) {
-            Map<String, Object> providerData = (Map<String, Object>) firebaseUser.getProviderData();
-            email = (String) providerData.get("email");
+            //Map<String, Object> providerData = firebaseUser.getProviderData();
+            email = auth.getCurrentUser().getEmail();
         }
         return email;
     }
@@ -103,7 +108,7 @@ public class FirebaseHelper {
     }
 
     public void signOff() {
-        notifyContactsOfConnectionChange(false, true);
+        notifyContactsOfConnectionChange(User.OFFLINE, true);
     }
 
     private void notifyContactsOfConnectionChange(boolean online, boolean signoff) {
